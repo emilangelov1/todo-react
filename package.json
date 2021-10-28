@@ -1,7 +1,7 @@
 {
   "name": "todo-app",
   "version": "0.1.0",
-  "homepage": "/todo-app",
+  "homepage": "/todo-react",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
