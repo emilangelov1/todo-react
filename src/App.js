@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import AddInput from "./components/add-input.component";
+import TodoItem from "./components/todo-item.component";
 
 function App() {
+  const [toDo, setToDo] = useState([]);
+
+  function resetToDo() {
+    setToDo([]);
+  }
+
+  function addToDo(newToDo) {
+    const newState = [...toDo, newToDo];
+    setToDo(newState);
+    console.log(newState);
+  }
+
+  function removeToDo(i) {
+    const newState = toDo.filter((singleToDo, index) => index !== i);
+    setToDo(newState);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>to-do app</h1>
+      <AddInput onReset={resetToDo} onClick={addToDo}></AddInput>
+      <ul>
+        {toDo.map((singleToDo, index) => (
+          <TodoItem
+            text={singleToDo}
+            onClick={() => removeToDo(index)}
+          ></TodoItem>
+        ))}
+      </ul>
     </div>
   );
 }
